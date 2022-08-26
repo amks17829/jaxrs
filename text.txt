@@ -1,0 +1,64 @@
+
+1 Select * from lms_member where membership_status=‘Permanent’;
+
+2 select lms_members.member_id, lms_members.member_name from lms_book_issue inner join lms_members on lms_book_issue.member_id=lms_members.member_id where lms_book_issue.book_issue_status =’N’;
+
+3 select member_id,member_name from lms_members where member_id in(select member_id from lms_book_issue where book_code =‘BL000002’);
+
+4  select book_code, author,book_title from lms_book_details where author like 'p%';
+
+5 select count(category) no_of_books from lms_book_details  where category ='java'; 
+
+6 select category ,count(category) no_of_books from lms_book_details group by category;
+
+7 select count(publication) no_of_books from lms_book_details where publication=‘Prentice Hall’;
+
+8  select lms_book_issue.book_code, lms_book_details.book_title from lms_book_issue  ,lms_book_issue where lms_book_issue.book_code=lms_book_details.book_code and lms_book_issue.date<’01-APR-12’;
+
+9 select member_id,member_name,date_register,membership_status from lms_member where date_register<’01-MRH-12’ and membership_status=’Temporary’;
+
+10 select member_id, (member_name)Name from lms_members where city=‘CHENNAI’ or city=‘DELHI’;
+
+12 select concat(concat(book_title,’  written by  ’),author) as book_written_by from lms_books_details;
+
+13 select avg(price) averageprice from lms_books_details where category=‘java’;
+
+14  select supplier_id, supplier_name, email from lms_supplier_details where email like ‘%gmail%’;
+
+15 select supplier_Name,supplier_id,  COALESCE(contact,email,address) contactaddress from lms_suppliers_details; ;
+
+16 . select supplier_id, supplier_name, contact ,NVL2(contact,’yes’, ’no’) as phonenumberavilable from lms_supplier_details;
+
+
+
+Average questions 
+
+	1.	Select m.meber_id ,m.member_name, b.book_code,c.book_title from lms_members m, lms_book_issue b, lms_book_details c where m.member_id=b.member_id and b.book_code=c.book_code;
+
+
+	2.	select count(book_code)no_books_available from lms_book_details  where book_code not in (select book_code from lms_book_issue);
+
+
+	3.	select m.member_id,m.member_name,f.fine_range,sum(f.fine_amount) from lms_members m join lms_fine_details f join ms_book_issue bi on m.member_id=bi.member_id and f.fine_range=bi.fine_range group by m.member_id having sum(f.fine_amount)>100; 
+
+
+	4.	Select m.book_code,c.book_title, (m.book_issue_status) as availabilitystatus from lms_book_issue m inner join lms_book_details c on m.book_code=c.book_code where category=‘java’ and book_edition=6;
+
+	5.	select book_code,book_title,rack_num from lms_book_details where rack_num='A1' ORDER BY book_title;
+
+	6.	select m.member_id,m.member_name,b.date_return,b.date_returned from lms_members m Inner join lms_book_issue b on m.member_id=b.member_id where date_return != date_returned;
+
+	7.	  select m.member_id,m.member_name,m.date_register from lms_members m where member_id not in(select member_id from lms_book_issue);
+
+	10.	Select book_title ,supplier_id  from lms_book_details where author=‘Herbert Schildt’ and edition=5 and supplier_id=’S01’;
+
+11.select count(rack_num)noofbooks,rack_num from lms_book_details group by rack_num order by count(rack_num);
+
+11.select count(rack_num)noofbooks,rack_num from lms_book_details group by rack_num order by count(rack_num);
+
+14. Select m.book_code,c.book_title, (m.book_issue_status) as availabilitystatus from lms_book_issue m inner join lms_book_details c on m.book_code=c.book_code where category=‘java’ and book_edition=5;
+
+13. Select book_code,book_title,publish_date from lms_book_details where extract(month from publish_date)=12;	
+
+
+ 
