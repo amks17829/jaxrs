@@ -61,4 +61,13 @@ Average questions
 13. Select book_code,book_title,publish_date from lms_book_details where extract(month from publish_date)=12;	
 
 
+Hard questions :
+
+1
+Select b.book_code,b.book_title,s.supplier_name from lms_book_details b inner join lms_suppliers_details s on s.supplier_id=b.supplier_id where s.supplier_id in(select supplier_id from lms_book_details group by supplier_id having count(book_code)=(select max(count(book_code)) from lms_book_details group by supplier_id));
+
+3
+Select supplier_id,supplier_name from lms_supplier_details where supplier_id=(select supplier_id from lms_book_details group by supplier_id having count(book_code)=(select min(count(book_code)) from lms_book_details group by suppiler_id));
+
+
  
